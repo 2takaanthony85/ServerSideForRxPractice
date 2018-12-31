@@ -5,6 +5,10 @@ import (
 	"net/http"
 )
 
+func getHello() string {
+	return "hello world!!"
+}
+
 func helloworld(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Hello World")
 }

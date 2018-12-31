@@ -11,6 +11,7 @@ func getHello() string {
 
 func helloworld(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Hello World")
+	fmt.Fprintf(w, "hello world")
 }
 
 func main() {

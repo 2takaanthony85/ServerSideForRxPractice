@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/2takaanthony85/serverSideForRxPractice/todos"
 	"github.com/gin-gonic/gin"
+	"github.com/wakashiyo/serverSideForRxPractice/todos"
 )
 
 func getHello() string {

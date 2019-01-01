@@ -1,7 +1,8 @@
 package todos
 
+//Todo todo item model
 type Todo struct {
-	ID       int    `json:"todo-id"`
+	ID       string `json:"todo-id"`
 	Title    string `json:"todo-title"`
 	Contents string `json:"todo-contents"`
 }

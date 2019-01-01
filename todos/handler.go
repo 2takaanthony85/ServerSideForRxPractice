@@ -8,17 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func getTodo(id int) Todo {
-	fmt.Printf("get todo %q", id)
-
-	todo := Todo{
-		ID:       123,
-		Title:    "sample",
-		Contents: "test",
-	}
-	return todo
-}
-
+//GetTodos get user's todos by user-id
 func GetTodos(c *gin.Context) {
 	params := c.Param("id")
 	id, err := strconv.Atoi(params)
@@ -30,10 +20,7 @@ func GetTodos(c *gin.Context) {
 	c.String(http.StatusOK, "can convert type int")
 }
 
-func createTodo() {
-
-}
-
+//CreateTodo create new todo
 func CreateTodo(c *gin.Context) {
 	params := c.Param("id")
 	id, err := strconv.Atoi(params)
@@ -53,10 +40,7 @@ func CreateTodo(c *gin.Context) {
 	})
 }
 
-func deleteTodo() {
-
-}
-
+//DeleteTodo delete user's todo by user-id and todo-id
 func DeleteTodo(c *gin.Context) {
 	fmt.Printf("Delete Todo")
 	c.JSON(http.StatusOK, gin.H{
@@ -66,10 +50,7 @@ func DeleteTodo(c *gin.Context) {
 	})
 }
 
-func updateTodo() {
-
-}
-
+//UpdateTodo update title or Contents of user's todo by user-id and toto-id
 func UpdateTodo(c *gin.Context) {
 	fmt.Printf("Update Todo")
 	c.JSON(http.StatusOK, gin.H{

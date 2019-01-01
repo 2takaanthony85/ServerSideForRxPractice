@@ -24,4 +24,5 @@ jobs:
       # specify any bash command here prefixed with `run: `
       - run: go get github.com/gin-gonic/gin
       - run: go get github.com/wakashiyo/serverSideForRxPractice/todos
+      - run: go get github.com/wakashiyo/serverSideForRxPractice/users
       - run: go test -v

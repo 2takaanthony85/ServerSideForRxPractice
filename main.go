@@ -1,32 +1,32 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/2takaanthony85/serverSideForRxPractice/todos"
+	"github.com/gin-gonic/gin"
 )
 
 func getHello() string {
 	return "hello world!!"
 }
 
-func helloworld(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Hello World")
-	fmt.Fprintf(w, "hello world")
-}
-
-func testHello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "test")
+func helloworld(c *gin.Context) {
+	c.String(http.StatusOK, "hello world!!")
 }
 
 func main() {
-	mux := http.NewServeMux()
+	router := gin.Default()
 
-	mux.HandleFunc("/", helloworld)
-	mux.HandleFunc("/test", testHello)
+	router.GET("/", helloworld)
 
-	server := &http.Server{
-		Addr:    "0.0.0.0:9000",
-		Handler: mux,
+	v1 := router.Group("/api/v1")
+	{
+		v1.GET("/user/:id/todos", todos.GetTodos)
+		v1.POST("/user/:id/todos", todos.CreateTodo)
+		v1.PUT("/user/:id/todos/:todo-id", todos.UpdateTodo)
+		v1.DELETE("/user/:id/todos/:todo-id", todos.DeleteTodo)
 	}
-	server.ListenAndServe()
+
+	router.Run(":9000")
 }

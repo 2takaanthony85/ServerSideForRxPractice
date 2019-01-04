@@ -12,9 +12,10 @@ func SignIn(c *gin.Context) {
 	mail := c.Query("email")
 	pass := c.Query("password")
 	fmt.Printf("signin --- email: %s, pass: %s", mail, pass)
+	getUser(mail, pass)
 	c.JSON(http.StatusOK, gin.H{
 		"status":  "posted",
-		"message": "sign in",
+		"message": "dlsakfladjflakj",
 		"nick":    "nick",
 	})
 }

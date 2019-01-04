@@ -59,6 +59,12 @@ docker-compose up -d --build
 docker-compose up -d
 ```
 
+containerをまとめて停止、削除
+
+```
+docker-compose down
+```
+
 ### mysql command
 
 #### option

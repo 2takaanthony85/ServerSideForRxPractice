@@ -1,20 +1,29 @@
 version: "3"
 
 services:
-  db:
-    ##build: ./db   
-    image: mysql
-    # ports:
-    #   - 3306:3306
-    volumes:
-      - ./db:/etc/mysql/conf.d
-      - ./db/mysql:/docker-entrypoint-initdb.d
-    environment:
-      MYSQL_ROOT_PASSWORD: root 
-      MYSQL_DATABASE: sample_db
-      MYSQL_USER: root 
-      MYSQL_PASSWORD: root 
-      # MYSQL_MASTER: "true"
+  # db:
+  #   ##build: ./db   
+  #   image: mysql:5.7
+  #   # ports:
+  #   #   - 3306:3306
+  #   expose:
+  #     - 3306
+  #   volumes:
+  #     - ./db/mysql/conf.d:/etc/mysql/conf.d
+  #     - ./db/mysql/mysql.conf.d:/etc/mysql/mysql.conf.d
+  #     - ./db/sql:/docker-entrypoint-initdb.d
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root 
+  #     MYSQL_DATABASE: sample_db
+  #     # コメントアウトの原因の参考
+  #     # https://github.com/docker-library/mysql/issues/129
+  #     # https://stackoverflow.com/questions/45086162/docker-mysql-error-1396-hy000-operation-create-user-failed-for-root
+  #     # MYSQL_USER: root 
+  #     # MYSQL_PASSWORD: root 
+  #     MYSQL_USER: sample
+  #     MYSQL_PASSWORD: sample 
+  #     # MYSQL_MASTER: "true"
+  #   restart: always
 
   api:
     build: .
@@ -27,7 +36,7 @@ services:
 
   proxy:
     build: ./proxy
-    # links:
-    #   - api:api
+    links:
+      - api
     ports:
       - 9000:80
